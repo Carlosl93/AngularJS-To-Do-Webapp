@@ -1,0 +1,25 @@
+<form name="loginform" ng-controller="userCtrl">
+
+    <p id="access" ng-show="canAccess"> Username - Password combination incorrect! </p>
+
+    <p>
+        Username
+        <i class="fa fa-times fa-1x" ng-show="loginform.user.$touched && loginform.user.$invalid" aria-hidden="true"></i>
+        <i class="fa fa-check fa-1x" ng-show="loginform.user.$touched && loginform.user.$valid" aria-hidden="true"></i>
+
+    </p>
+    <input type="text" name="user" ng-model="user" ng-required="true">
+    <p>
+        Password
+        <i class="fa fa-times fa-1x" ng-show="loginform.password.$touched && loginform.password.$invalid" aria-hidden="true"></i>
+        <i class="fa fa-check fa-1x" ng-show="loginform.password.$touched && loginform.password.$valid" aria-hidden="true"></i>
+    </p>
+    <input type="password" name="password" ng-model="pass" ng-required="true">
+
+    <input type="hidden" name="control" value="1" ng-model="control">
+
+    <div id="buttons">
+        <a href="#!/register">Register</a>
+        <a href="" ng-disabled="loginform.$invalid" ng-click="loginUser()">Login</a>
+    </div>
+</form>

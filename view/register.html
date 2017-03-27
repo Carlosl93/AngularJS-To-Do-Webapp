@@ -1,0 +1,31 @@
+<form name="registerform" ng-controller="userCtrl" novalidate>
+
+    <p>
+        Username
+        <i class="fa fa-times fa-1x" ng-show="registerform.user.$touched && registerform.user.$invalid" aria-hidden="true"></i>
+        <i class="fa fa-check fa-1x" ng-show="registerform.user.$touched && registerform.user.$valid" aria-hidden="true"></i>
+
+    </p>
+    <input type="text" name="user" ng-model="user" ng-required="true">
+
+    <p>
+        Password
+        <i class="fa fa-times fa-1x" ng-show="registerform.password.$touched && registerform.password.$invalid" aria-hidden="true"></i>
+        <i class="fa fa-check fa-1x" ng-show="registerform.password.$touched && registerform.password.$valid" aria-hidden="true"></i>
+    </p>
+    <input type="password" name="password" ng-model="pass" ng-required="true">
+
+    <p>
+        Mail
+        <i class="fa fa-times fa-1x" ng-show="registerform.email.$touched && registerform.email.$invalid" aria-hidden="true"></i>
+        <i class="fa fa-check fa-1x" ng-show="registerform.email.$touched && registerform.email.$valid" aria-hidden="true"></i>
+    </p>
+    <input type="email" name="email" ng-model="email" ng-required="true">
+
+    <input type="hidden" name="control" value="0" ng-model="control">
+
+    <div id="buttons">
+        <a href="#/login" ng-disabled="registerform.$invalid" ng-click="registerUser()">Register</a>
+    </div>
+
+</form>

@@ -1,0 +1,104 @@
+body {
+    background-color: #247baf;
+    font-family: 'Ranga', cursive;
+    padding: 0px;
+    margin: 0px;
+    font-size: 30px;
+}
+
+p {
+    margin: 0px;
+}
+
+header {
+    background-color: #50514f;
+    height: 60px;
+    display: block;
+}
+
+header p {
+    font-size: 1em;
+    color: #f25f5c;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+header #redBox01 {
+    background-color: #f25f5c;
+    height: 10px;
+}
+
+header #redBox02 {
+    background-color: #f25f5c;
+    height: 4px;
+    margin-top: 5px;
+}
+
+main {
+    color: #ffe066;
+    font-size: 1em;
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+main form p {
+    font-size: 1em;
+}
+
+main form input {
+    font-family: 'Ranga', cursive;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #ffe066;
+    font-size: 1em;
+    color: #ffe066;
+    text-align: center;
+    width: 40vw;
+    margin-bottom: 3%;
+}
+
+main form input:focus {
+    outline: none;
+}
+
+a,
+a:visited,
+a:active,
+a:hover,
+a:link {
+    font-size: 1.2em;
+    text-decoration: none;
+    background-color: #ffe066;
+    color: #247baf;
+    margin: 0px 20px;
+    padding: 0px 30px;
+    border-radius: 30px;
+}
+
+a[disabled='disabled'] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#access {
+    font-size: 0.6em;
+    background-color: #ffe066;
+    color: #247baf;
+    margin: 0px 20px;
+    padding: 0px 30px;
+    border-radius: 30px;
+}
+
+@media (max-width: 720px) {
+    main form input {
+        width: 70vw;
+    }
+}
