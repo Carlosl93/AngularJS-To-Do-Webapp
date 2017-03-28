@@ -19,7 +19,7 @@
         }
 
         public function loginUser(){
-            $sql = "SELECT user FROM user WHERE user='$this->user' and pass='$this->pass'";
+            $sql = "SELECT id_user FROM user WHERE user='$this->user' and pass='$this->pass'";
             return $sql;
         }
 

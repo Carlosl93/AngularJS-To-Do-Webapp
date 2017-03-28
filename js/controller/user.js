@@ -2,9 +2,13 @@
 
     angular
         .module('userModule')
-        .controller('userCtrl', ['$scope', '$http', '$location', UserCtrl]);
+        .controller('userCtrl', ['$scope', '$http', '$location', '$timeout', 'dataFactory', UserCtrl]);
 
-    function UserCtrl($scope, $http, $location) {
+    UserCtrl.$inject = ['dataFactory'];
+
+    function UserCtrl($scope, $http, $location, $timeout, dataFactory) {
+
+        $scope.dataFactory = dataFactory;
 
         $scope.canAccess = false;
         $scope.registerUser = registerUser;
@@ -33,7 +37,11 @@
                         $scope.canAccess = true;
                     } else {
                         $scope.canAccess = false;
+                        var rec = data.data;
+                        dataFactory.idUser = rec[0].id_user;
+                        dataFactory.getDataFromServer(dataFactory.idUser);
                         $location.path('/task');
+
                     }
                 });
         }

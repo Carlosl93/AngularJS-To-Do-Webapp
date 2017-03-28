@@ -11,9 +11,10 @@
         //Declarations
         $scope.dateFactory = dateFactory;
         $scope.dataFactory = dataFactory;
+        $scope.data = dataFactory.getData();
+        console.log($scope.data);
 
         $scope.clock = Date.now();
-
         //Variables
         $scope.newTask = {
             canEdit: true,
@@ -29,7 +30,7 @@
         $scope.setEdit = setEdit;
 
         getHour();
-        $interval(getHour, 60000);
+        $interval(getHour, 1000);
 
         //When text clicked delete button appears - Toggles the canEdit between true or false
         function setEdit(index) {

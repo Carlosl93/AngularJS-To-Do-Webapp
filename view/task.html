@@ -1,7 +1,7 @@
 <!--DATE CONTROLLER -->
 <div id="dayBox" ng-controller="taskCtrl">
 
-    <div ng-repeat="day in dataFactory">
+    <div ng-repeat="day in data">
 
         <div ng-repeat="task in day">
 
@@ -9,7 +9,7 @@
                 <div id="dateBox">
                     <p>{{task.date}}</p>
                 </div>
-                <div id="hourBox" ng-show="task.currentDate" ng-model="dateFactory.currentHour">
+                <div id="hourBox" ng-show="task.currentDate" ng-model="data.currentHour">
                     <p>{{clock | date:'HH:mm'}}</p>
                 </div>
             </section>

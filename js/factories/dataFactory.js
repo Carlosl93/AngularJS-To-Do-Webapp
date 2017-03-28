@@ -2,11 +2,55 @@
 
     angular
         .module('userModule')
-        .factory('dataFactory', DataFactory);
+        .factory('dataFactory', ['$http', DataFactory]);
 
-    function DataFactory() {
+    function DataFactory($http) {
 
-        var objData = {
+        var idUser = '';
+        var objData = {};
+
+        var factoryData = {
+            'idUser': idUser,
+            'objData': objData,
+            'getDataFromServer': getDataFromServer,
+            'getData': getData
+        }
+
+        return factoryData;
+
+        function getDataFromServer(id) {
+            $http
+                .post('php/taskController.php', {
+                    'userid': id,
+                    'jsondat': '',
+                    'control': 0
+                })
+                .then(function(data) {
+                    var e = data.data;
+                    objData = JSON.parse(e[0].textdat);
+
+                });
+        }
+
+        function getData() {
+            return objData;
+        }
+
+        function postData(id, data) {
+            var sendString = JSON.stringify(data);
+
+            $http
+                .post('php/taskController.php', {
+                    'userid': id,
+                    'jsondat': sendString,
+                    'control': 1
+                });
+        }
+    }
+
+})();
+/*
+var objData = {
 
             '0': [{
                 'date': '27/02',
@@ -42,69 +86,4 @@
                 'tasks': []
             }]
         };
-
-
-
-        return objData;
-
-    }
-
-})();
-/*
-var objData = {
-
-    '0':
-
-        [{
-            canEdit: true,
-            check: false,
-            taskText: "EPALE",
-            taskHour: "04:32 PM"
-        },
-        {
-            canEdit: true,
-            check: true,
-            taskText: "Comer McDonalds",
-            taskHour: "05:04 PM"
-        },
-        {
-            canEdit: true,
-            check: false,
-            taskText: "Practicar Angular",
-            taskHour: "05:40 PM"
-        }
-    ],
-
-    '1':
-
-        [{
-            canEdit: true,
-            check: false,
-            taskText: "Leer un capitulo del libro",
-            taskHour: "04:32 PM"
-        },
-        {
-            canEdit: true,
-            check: true,
-            taskText: "Comer McDonalds",
-            taskHour: "05:04 PM"
-        },
-        {
-            canEdit: true,
-            check: false,
-            taskText: "Practicar Angular",
-            taskHour: "05:40 PM"
-        },
-        {
-            canEdit: true,
-            check: false,
-            taskText: "Nose nada",
-            taskHour: "05:40 PM"
-        }
-    ]
-
-
-
-
-};
 */
