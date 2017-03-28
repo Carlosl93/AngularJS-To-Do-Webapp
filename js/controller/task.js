@@ -2,86 +2,65 @@
 
     angular
         .module('userModule')
-        .controller('taskCtrl', ['$scope', 'dateService', TaskController]);
+        .controller('taskCtrl', ['$scope', '$interval', 'dateFactory', 'dataFactory', TaskController]);
 
-    TaskController.$inject = ['dateService'];
+    TaskController.$inject = ['dateFactory', 'dataFactory'];
 
-    function TaskController($scope, dateService) {
+    function TaskController($scope, $interval, dateFactory, dataFactory) {
 
         //Declarations
-        $scope.dateService = dateService;
+        $scope.dateFactory = dateFactory;
+        $scope.dataFactory = dataFactory;
+
+        $scope.clock = Date.now();
 
         //Variables
         $scope.newTask = {
             canEdit: true,
-            canEditTask: true,
             check: false,
             taskText: "",
-            taskHour: dateService.currentHour
+            taskHour: $scope.clock
         };
 
-        $scope.taskData = [{
-                canEdit: true,
-
-                check: false,
-                taskText: "Leer un capitulo del libro",
-                taskHour: "04:32 PM"
-            },
-            {
-                canEdit: true,
-
-                check: true,
-                taskText: "Comer McDonalds",
-                taskHour: "05:04 PM"
-            },
-            {
-                canEdit: true,
-
-                check: false,
-                taskText: "Practicar Angular",
-                taskHour: "05:40 PM"
-            }
-        ];
         //Functions
         $scope.setTask = setTask;
         $scope.deleteTask = deleteTask;
-        $scope.editTask = editTask;
-        $scope.setEditTask = setEditTask;
         $scope.setCheck = setCheck;
         $scope.setEdit = setEdit;
 
+        getHour();
+        $interval(getHour, 60000);
 
+        //When text clicked delete button appears - Toggles the canEdit between true or false
         function setEdit(index) {
             index.canEdit ^= true;
         }
-
+        //Toggles the check toggling the check variable between true or false
         function setCheck(index) {
             index.check ^= true;
         }
-
-        function setTask() {
-            $scope.taskData.push($scope.newTask);
+        //Adds a new task
+        function setTask(a) {
+            console.log(a);
+            a.tasks.push($scope.newTask);
             $scope.newTask = {
                 canEdit: true,
                 check: false,
                 taskText: "",
-                taskHour: dateService.currentHour
+                taskHour: ""
             };
 
         }
 
-        function deleteTask(index) {
-            var i = vm.taskData.indexOf(index);
-            $scope.taskData.splice(i, 1);
+        function deleteTask(a, index) {
+            var i = a.tasks.indexOf(index);
+            a.tasks.splice(i, 1);
         }
 
-        function editTask(index) {
-
+        function getHour() {
+            $scope.clock = Date.now();
         }
 
-        function setEditTask(index) {
-            index.canEditTask ^= true;
-        }
     }
 
 

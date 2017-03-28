@@ -12,8 +12,11 @@ p {
 
 header {
     background-color: #50514f;
+    width: 100%;
     height: 60px;
     display: block;
+    position: fixed;
+    margin-top: -65px;
 }
 
 header p {
@@ -38,6 +41,7 @@ header #redBox02 {
 main {
     color: #ffe066;
     font-size: 1em;
+    margin-top: 65px;
 }
 
 main #dateHourBox {
@@ -107,4 +111,10 @@ input {
 
 input:focus {
     outline: none;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(112, 193, 179, 0), rgba(112, 193, 179, 0.75), rgba(112, 193, 179, 0));
 }

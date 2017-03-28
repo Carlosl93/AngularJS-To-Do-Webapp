@@ -1,48 +1,59 @@
 <!--DATE CONTROLLER -->
-<section ng-controller="dateCtrl" id="dateHourBox">
-    <div id="dateBox">
-        <p>{{dateService.currentDate}}</p>
-    </div>
-    <div id="hourBox">
-        <p>{{dateService.currentHour}}</p>
-    </div>
-</section>
-<!-- END CONTROLLER -->
+<div id="dayBox" ng-controller="taskCtrl">
 
-<!--TASK CONTROLLER -->
-<section ng-controller="taskCtrl">
-    <!--Task repeat-->
-    <div id="contentBox" ng-repeat="task in taskData">
-        <div id="checkBox" ng-click="setCheck(task)">
-            <i class="fa fa-check-circle-o fa-1x" ng-class="{'fa-check-circle-o' : task.check == true, 'fa-circle-o': task.check == false}" aria-hidden="true"></i>
-        </div>
-        <div id="textBox" ng-click="setEdit(task)">
-            <p>{{task.taskText}}</p>
-        </div>
-        <div id="timeBox">
-            <p ng-show="task.canEdit">{{task.taskHour}}</p>
-            <div ng-hide="task.canEdit">
-                <div class="editIcon" ng-click="deleteTask(task)"><i class="fa fa-minus-circle fa-1x" aria-hidden="true"></i></div>
-            </div>
+    <div ng-repeat="day in dataFactory">
+
+        <div ng-repeat="task in day">
+
+            <section id="dateHourBox">
+                <div id="dateBox">
+                    <p>{{task.date}}</p>
+                </div>
+                <div id="hourBox" ng-show="task.currentDate" ng-model="dateFactory.currentHour">
+                    <p>{{clock | date:'HH:mm'}}</p>
+                </div>
+            </section>
+
+            <section>
+                <!--Task repeat-->
+                <div id="contentBox" ng-repeat="taskBox in task.tasks">
+                    <div id="checkBox" ng-click="setCheck(taskBox)">
+                        <i class="fa fa-check-circle-o fa-1x" ng-class="{'fa-check-circle-o' : taskBox.check == true, 'fa-circle-o': taskBox.check == false}" aria-hidden="true"></i>
+                    </div>
+                    <div id="textBox" ng-click="setEdit(taskBox)">
+                        <p>{{taskBox.taskText}}</p>
+                    </div>
+                    <div id="timeBox">
+                        <p ng-show="taskBox.canEdit">{{taskBox.taskHour}}</p>
+                        <div ng-hide="taskBox.canEdit">
+                            <div class="editIcon" ng-click="deleteTask(task, taskBox)"><i class="fa fa-minus-circle fa-1x" aria-hidden="true"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <!--End task repeat-->
+
+
+                <!--Input task-->
+                <div id="contentBox" ng-show="task.currentDate">
+                    <div id="checkBox" ng-click="setTask(task)">
+                        <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i>
+                    </div>
+                    <div id="textBox">
+                        <input type="text" ng-model="newTask.taskText"></input>
+                    </div>
+                    <div id="timeBox">
+                        <p></p>
+                    </div>
+                </div>
+                <!--End input task-->
+
+            </section>
+            <hr>
         </div>
     </div>
-    <!--End task repeat-->
 
-    <!--Input task-->
-    <div id="contentBox">
-        <div id="checkBox" ng-click="setTask()">
-            <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i>
-        </div>
-        <div id="textBox">
-            <input type="text" ng-model="newTask.taskText"></input>
-        </div>
-        <div id="timeBox">
-            <p></p>
-        </div>
-    </div>
-    <!--End input task-->
 
-</section>
+</div>
 <!-- END CONTROLLER -->
 <!-- 
         <div id="contentBox">

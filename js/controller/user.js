@@ -2,9 +2,9 @@
 
     angular
         .module('userModule')
-        .controller('userCtrl', ['$scope', '$http', UserCtrl]);
+        .controller('userCtrl', ['$scope', '$http', '$location', UserCtrl]);
 
-    function UserCtrl($scope, $http) {
+    function UserCtrl($scope, $http, $location) {
 
         $scope.canAccess = false;
         $scope.registerUser = registerUser;
@@ -31,9 +31,9 @@
                 .then(function(data) {
                     if (data.data == '0') {
                         $scope.canAccess = true;
-                        console.log(data);
                     } else {
                         $scope.canAccess = false;
+                        $location.path('/task');
                     }
                 });
         }
