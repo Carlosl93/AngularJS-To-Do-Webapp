@@ -11,16 +11,15 @@
         //Declarations
         $scope.dateFactory = dateFactory;
         $scope.dataFactory = dataFactory;
-        $scope.data = dataFactory.getData();
-        console.log($scope.data);
 
-        $scope.clock = Date.now();
+        $scope.data = dataFactory.getData();
+
         //Variables
         $scope.newTask = {
             canEdit: true,
             check: false,
             taskText: "",
-            taskHour: $scope.clock
+            taskHour: Date.now()
         };
 
         //Functions
@@ -29,9 +28,12 @@
         $scope.setCheck = setCheck;
         $scope.setEdit = setEdit;
 
+        $scope.clock = Date.now();
         getHour();
         $interval(getHour, 1000);
 
+
+        /*_____TASK FUNCTIONS_____*/
         //When text clicked delete button appears - Toggles the canEdit between true or false
         function setEdit(index) {
             index.canEdit ^= true;
@@ -42,22 +44,25 @@
         }
         //Adds a new task
         function setTask(a) {
-            console.log(a);
             a.tasks.push($scope.newTask);
             $scope.newTask = {
                 canEdit: true,
                 check: false,
                 taskText: "",
-                taskHour: ""
+                taskHour: Date.now()
             };
+            dataFactory.postData(dataFactory.idUser, $scope.data);
 
         }
 
         function deleteTask(a, index) {
             var i = a.tasks.indexOf(index);
             a.tasks.splice(i, 1);
+            dataFactory.postData(dataFactory.idUser, $scope.data);
         }
 
+
+        /*_____TIME FUNCTIONS_____*/
         function getHour() {
             $scope.clock = Date.now();
         }

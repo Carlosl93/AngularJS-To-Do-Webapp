@@ -8,12 +8,15 @@
 
         var idUser = '';
         var objData = {};
+        var newData = 'HOLA';
 
         var factoryData = {
             'idUser': idUser,
             'objData': objData,
             'getDataFromServer': getDataFromServer,
-            'getData': getData
+            'getData': getData,
+            'postData': postData,
+            'createData': createData
         }
 
         return factoryData;
@@ -29,6 +32,18 @@
                     var e = data.data;
                     objData = JSON.parse(e[0].textdat);
 
+                    var lengthObj = Object.keys(objData).length;
+                    var lastKey = lengthObj - 1;
+                    var lastObj = objData[lastKey];
+                    var lastObjDate = new Date(lastObj[0].date);
+
+                    var currentDate = Date.now();
+                    var currentDateObj = new Date(currentDate);
+
+                    if (lastObjDate.getDate() < currentDateObj.getDate()) {
+                        console.log('Its a new day');
+                    }
+
                 });
         }
 
@@ -37,13 +52,30 @@
         }
 
         function postData(id, data) {
-            var sendString = JSON.stringify(data);
+            var sendString = angular.toJson(data);
 
             $http
                 .post('php/taskController.php', {
                     'userid': id,
                     'jsondat': sendString,
                     'control': 1
+                });
+        }
+
+        function createData(id) {
+            var newObj = {
+                '0': [{
+                    'date': Date.now(),
+                    'currentDate': true,
+                    'tasks': []
+                }]
+            };
+
+            $http
+                .post('php/taskController.php', {
+                    'userid': id,
+                    'jsondat': angular.toJson(newObj),
+                    'control': 2
                 });
         }
     }
@@ -86,4 +118,12 @@ var objData = {
                 'tasks': []
             }]
         };
+var newObj = {
+    '0': [{
+        'date': '27/02',
+        'currentDate': false,
+        'tasks' : []
+        }]
+};
+
 */

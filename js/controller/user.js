@@ -22,6 +22,10 @@
                     'pass': $scope.pass,
                     'email': $scope.email,
                     'control': 0
+                }).then(function(data) {
+                    var rec = data.data;
+                    dataFactory.idUser = rec[0].id_user;
+                    dataFactory.createData(dataFactory.idUser);
                 });
         }
 
@@ -40,8 +44,10 @@
                         var rec = data.data;
                         dataFactory.idUser = rec[0].id_user;
                         dataFactory.getDataFromServer(dataFactory.idUser);
-                        $location.path('/task');
 
+
+
+                        $location.path('/task');
                     }
                 });
         }

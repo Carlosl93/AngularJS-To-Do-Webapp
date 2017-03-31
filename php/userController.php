@@ -21,6 +21,7 @@
     switch($control){
         case 0: //Register user
             $conexObj->doSQL( $userObj->registerUser() );
+            $userObj->getData( $conexObj->doSQL( $userObj->loginUser() ) ) ;
             break;
         case 1: //Login user
             $userObj->getData( $conexObj->doSQL( $userObj->loginUser() ) ) ;

@@ -1,13 +1,13 @@
 <!--DATE CONTROLLER -->
 <div id="dayBox" ng-controller="taskCtrl">
 
-    <div ng-repeat="day in data">
+    <div ng-repeat="day in data track by $index">
 
-        <div ng-repeat="task in day">
+        <div ng-repeat="task in day track by $index">
 
             <section id="dateHourBox">
                 <div id="dateBox">
-                    <p>{{task.date}}</p>
+                    <p>{{clock | date:'dd/MM'}}</p>
                 </div>
                 <div id="hourBox" ng-show="task.currentDate" ng-model="data.currentHour">
                     <p>{{clock | date:'HH:mm'}}</p>
@@ -21,10 +21,10 @@
                         <i class="fa fa-check-circle-o fa-1x" ng-class="{'fa-check-circle-o' : taskBox.check == true, 'fa-circle-o': taskBox.check == false}" aria-hidden="true"></i>
                     </div>
                     <div id="textBox" ng-click="setEdit(taskBox)">
-                        <p>{{taskBox.taskText}}</p>
+                        <p>{{taskBox.taskText }}</p>
                     </div>
                     <div id="timeBox">
-                        <p ng-show="taskBox.canEdit">{{taskBox.taskHour}}</p>
+                        <p ng-show="taskBox.canEdit">{{taskBox.taskHour | date:'HH:mm'}}</p>
                         <div ng-hide="taskBox.canEdit">
                             <div class="editIcon" ng-click="deleteTask(task, taskBox)"><i class="fa fa-minus-circle fa-1x" aria-hidden="true"></i></div>
                         </div>

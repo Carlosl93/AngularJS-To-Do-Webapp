@@ -20,8 +20,12 @@
         case 0: //Get JSON 
             $taskObj->getData( $conexObj->doSQL( $taskObj->getJSON() ) );
             break;
-        case 1: //Get JSON 
+        case 1: //Update JSON 
+            echo $jsondat;
             $conexObj->doSQL( $taskObj->setJSON() );
+            break;
+        case 2: //Create JSON when new user_error
+            $conexObj->doSQL( $taskObj->createJSON() );
             break;
     }
 

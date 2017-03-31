@@ -20,7 +20,12 @@
         }
 
         public function setJSON(){
-            $sql = "";
+            $sql = "UPDATE textData SET textdat='$this->jsondat' WHERE id_user = '$this->iduser'";
+            return $sql;
+        }
+
+        public function createJSON(){
+            $sql = "INSERT INTO textData(textdat, id_user) VALUES ('$this->jsondat', '$this->iduser')";
             return $sql;
         }
 
