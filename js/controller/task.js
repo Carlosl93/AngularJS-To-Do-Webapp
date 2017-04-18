@@ -2,14 +2,13 @@
 
     angular
         .module('userModule')
-        .controller('taskCtrl', ['$scope', '$interval', 'dateFactory', 'dataFactory', TaskController]);
+        .controller('taskCtrl', ['$scope', '$interval', 'dataFactory', TaskController]);
 
-    TaskController.$inject = ['dateFactory', 'dataFactory'];
+    TaskController.$inject = ['dataFactory'];
 
-    function TaskController($scope, $interval, dateFactory, dataFactory) {
+    function TaskController($scope, $interval, dataFactory) {
 
         //Declarations
-        $scope.dateFactory = dateFactory;
         $scope.dataFactory = dataFactory;
 
         $scope.data = dataFactory.getData();
@@ -41,6 +40,7 @@
         //Toggles the check toggling the check variable between true or false
         function setCheck(index) {
             index.check ^= true;
+            dataFactory.postData(dataFactory.idUser, $scope.data);
         }
         //Adds a new task
         function setTask(a) {

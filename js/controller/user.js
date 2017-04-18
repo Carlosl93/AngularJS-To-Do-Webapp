@@ -43,11 +43,10 @@
                         $scope.canAccess = false;
                         var rec = data.data;
                         dataFactory.idUser = rec[0].id_user;
+
                         dataFactory.getDataFromServer(dataFactory.idUser);
 
 
-
-                        $location.path('/task');
                     }
                 });
         }

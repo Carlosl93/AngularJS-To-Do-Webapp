@@ -27,6 +27,13 @@ header p {
     padding: 0px;
 }
 
+header div i {
+    margin-top: -40px;
+    margin-right: 5%;
+    float: right;
+    color: #f25f5c;
+}
+
 header #redBox01 {
     background-color: #f25f5c;
     height: 10px;
@@ -42,6 +49,11 @@ main {
     color: #ffe066;
     font-size: 1em;
     margin-top: 65px;
+}
+
+main #dayBox {
+    color: rgba(112, 193, 179, 0.25);
+    margin: 0px 8%;
 }
 
 main #dateHourBox {
@@ -88,24 +100,13 @@ main #contentBox #timeBox .editIcon {
     width: 35%;
 }
 
-@media (max-width: 720px) {
-    main #contentBox #textBox {
-        padding-left: 3.5%;
-        padding-right: 3.5%;
-    }
-    main #contentBox #timeBox {
-        font-size: 0.6em;
-        align-self: center;
-    }
-}
-
 input {
     font-family: 'Ranga', cursive;
     background: none;
     border: none;
-    border-bottom: 2px solid #ffe066;
+    border-bottom: 2px solid rgba(112, 193, 179, 0.25);
     font-size: 1em;
-    color: #ffe066;
+    color: rgba(112, 193, 179, 0.25);
     width: 100%;
 }
 
@@ -117,4 +118,49 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(112, 193, 179, 0), rgba(112, 193, 179, 0.75), rgba(112, 193, 179, 0));
+}
+
+#mainContent.ng-enter {
+    transition: 0.5s ease-in-out;
+    transform: translateX(300px);
+    opacity: 0;
+}
+
+#mainContent.ng-enter.ng-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+#mainContent.ng-leave {
+    transition: 0.5s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+#mainContent.ng-leave.ng-leave-active {
+    transform: translateX(-300px);
+    opacity: 0;
+}
+
+@media (max-width: 720px) {
+    main #contentBox #textBox {
+        padding-left: 6.5%;
+        padding-right: 6.5%;
+    }
+    main #contentBox #timeBox {
+        font-size: 0.6em;
+        align-self: center;
+    }
+    main #dayBox {
+        margin: 0px 4%;
+    }
+}
+
+.panel {
+    color: #ffe066;
+}
+
+.panel input {
+    color: #ffe066;
+    border-bottom: 2px solid #ffe066;
 }

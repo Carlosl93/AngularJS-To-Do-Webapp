@@ -1,3 +1,11 @@
+<header>
+    <p>To-Do List</p>
+    <div id="redBox01">
+    </div>
+    <div id="redBox02">
+    </div>
+</header>
+
 <form name="loginform" ng-controller="userCtrl">
 
     <p id="access" ng-show="canAccess"> Username - Password combination incorrect! </p>
@@ -18,8 +26,8 @@
 
     <input type="hidden" name="control" value="1" ng-model="control">
 
-    <div id="buttons">
-        <a href="#!/register">Register</a>
-        <a href="" ng-disabled="loginform.$invalid" ng-click="loginUser()">Login</a>
+    <div>
+        <a id="buttons" href="#!/register">Register</a>
+        <a id="buttons" href="" ng-disabled="loginform.$invalid" ng-click="loginUser()">Login</a>
     </div>
 </form>

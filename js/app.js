@@ -1,7 +1,7 @@
 (function() {
 
     angular
-        .module('userModule', ['ngRoute'])
+        .module('userModule', ['ngRoute', 'ngAnimate'])
         .config(['$routeProvider', RouteProvider]);
 
     function RouteProvider($routeProvider) {

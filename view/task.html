@@ -1,55 +1,62 @@
-<!--DATE CONTROLLER -->
+<header>
+    <div>
+        <p>To-Do List</p>
+        <i ng-controller="mailCtrl" ng-click="sendMail()" class="fa fa-envelope-o" aria-hidden="true"></i>
+    </div>
+    <div id="redBox01">
+    </div>
+    <div id="redBox02">
+    </div>
+</header>
+
 <div id="dayBox" ng-controller="taskCtrl">
 
-    <div ng-repeat="day in data track by $index">
+    <div ng-repeat="day in data" enter leave ng-class="{panel: day.currentDate}">
 
-        <div ng-repeat="task in day track by $index">
+        <section id="dateHourBox">
+            <div id="dateBox">
+                <p>{{day.date | date:'dd/MM'}}</p>
+            </div>
+            <div id="hourBox" ng-show="day.currentDate" ng-model="data.currentHour">
+                <p>{{clock | date:'HH:mm'}}</p>
+            </div>
+        </section>
 
-            <section id="dateHourBox">
-                <div id="dateBox">
-                    <p>{{clock | date:'dd/MM'}}</p>
+        <section>
+            <!--Task repeat-->
+            <div id="contentBox" ng-repeat="taskBox in day.tasks">
+                <div id="checkBox" ng-click="setCheck(taskBox)">
+                    <i class="fa fa-check-circle-o fa-1x" ng-class="{'fa-check-circle-o' : taskBox.check == true, 'fa-circle-o': taskBox.check == false}" aria-hidden="true"></i>
                 </div>
-                <div id="hourBox" ng-show="task.currentDate" ng-model="data.currentHour">
-                    <p>{{clock | date:'HH:mm'}}</p>
+                <div id="textBox" ng-click="setEdit(taskBox)">
+                    <p>{{taskBox.taskText}}</p>
                 </div>
-            </section>
-
-            <section>
-                <!--Task repeat-->
-                <div id="contentBox" ng-repeat="taskBox in task.tasks">
-                    <div id="checkBox" ng-click="setCheck(taskBox)">
-                        <i class="fa fa-check-circle-o fa-1x" ng-class="{'fa-check-circle-o' : taskBox.check == true, 'fa-circle-o': taskBox.check == false}" aria-hidden="true"></i>
-                    </div>
-                    <div id="textBox" ng-click="setEdit(taskBox)">
-                        <p>{{taskBox.taskText }}</p>
-                    </div>
-                    <div id="timeBox">
-                        <p ng-show="taskBox.canEdit">{{taskBox.taskHour | date:'HH:mm'}}</p>
-                        <div ng-hide="taskBox.canEdit">
-                            <div class="editIcon" ng-click="deleteTask(task, taskBox)"><i class="fa fa-minus-circle fa-1x" aria-hidden="true"></i></div>
-                        </div>
+                <div id="timeBox">
+                    <p ng-show="taskBox.canEdit">{{taskBox.taskHour | date:'HH:mm'}}</p>
+                    <div ng-hide="taskBox.canEdit">
+                        <div class="editIcon" ng-click="deleteTask(day, taskBox)"><i class="fa fa-minus-circle fa-1x" aria-hidden="true"></i></div>
                     </div>
                 </div>
-                <!--End task repeat-->
+            </div>
+            <!--End task repeat-->
 
 
-                <!--Input task-->
-                <div id="contentBox" ng-show="task.currentDate">
-                    <div id="checkBox" ng-click="setTask(task)">
-                        <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i>
-                    </div>
-                    <div id="textBox">
-                        <input type="text" ng-model="newTask.taskText"></input>
-                    </div>
-                    <div id="timeBox">
-                        <p></p>
-                    </div>
+            <!--Input task-->
+            <div id="contentBox" ng-show="day.currentDate">
+                <div id="checkBox" ng-click="setTask(day)">
+                    <i class="fa fa-plus-circle fa-1x" aria-hidden="true"></i>
                 </div>
-                <!--End input task-->
+                <div id="textBox">
+                    <input type="text" ng-model="newTask.taskText"></input>
+                </div>
+                <div id="timeBox">
+                    <p></p>
+                </div>
+            </div>
+            <!--End input task-->
 
-            </section>
-            <hr>
-        </div>
+        </section>
+        <hr>
     </div>
 
 
