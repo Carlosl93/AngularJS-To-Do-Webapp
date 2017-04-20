@@ -4,15 +4,14 @@
     include 'task.class.php';
 
     $postdata = file_get_contents('php://input');
-    $request = json_decode($postdata);
+    $request  = json_decode($postdata);
 
-    $userid = $request->userid;
+    $userid  = $request->userid;
     $jsondat = $request->jsondat;
     $control = $request->control;
 
     $conexObj = new conex();
     $taskObj  = new task($userid, $jsondat);
-
 
     $conexObj->connect();
 
@@ -21,7 +20,6 @@
             $taskObj->getData( $conexObj->doSQL( $taskObj->getJSON() ) );
             break;
         case 1: //Update JSON 
-            echo $jsondat;
             $conexObj->doSQL( $taskObj->setJSON() );
             break;
         case 2: //Create JSON when new user_error

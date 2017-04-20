@@ -15,17 +15,17 @@
         }
 
         public function getJSON(){
-            $sql = "SELECT textdat FROM `textData` WHERE id_user = '$this->iduser'";
+            $sql = "SELECT textdat FROM textdata WHERE id_user = '$this->iduser'";
             return $sql;
         }
 
         public function setJSON(){
-            $sql = "UPDATE textData SET textdat='$this->jsondat' WHERE id_user = '$this->iduser'";
+            $sql = "UPDATE textdata SET textdat='$this->jsondat' WHERE id_user = '$this->iduser'";
             return $sql;
         }
 
         public function createJSON(){
-            $sql = "INSERT INTO textData(textdat, id_user) VALUES ('$this->jsondat', '$this->iduser')";
+            $sql = "INSERT INTO textdata(textdat, id_user) VALUES ('$this->jsondat', '$this->iduser')";
             return $sql;
         }
 

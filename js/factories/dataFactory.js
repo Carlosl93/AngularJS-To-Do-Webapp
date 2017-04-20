@@ -40,8 +40,7 @@
         }
 
         function sendEmailData(id) {
-            getDataFromServer(id);
-
+            //getDataFromServer(id);
             $http
                 .post('php/mailController.php', {
                     'userid': id

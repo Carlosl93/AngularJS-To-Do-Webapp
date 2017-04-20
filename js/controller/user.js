@@ -34,6 +34,7 @@
                 .post('php/userController.php', {
                     'user': $scope.user,
                     'pass': $scope.pass,
+                    'email': '',
                     'control': 1
                 })
                 .then(function(data) {
@@ -43,6 +44,8 @@
                         $scope.canAccess = false;
                         var rec = data.data;
                         dataFactory.idUser = rec[0].id_user;
+
+                        console.log(dataFactory.idUser);
 
                         dataFactory.getDataFromServer(dataFactory.idUser);
 

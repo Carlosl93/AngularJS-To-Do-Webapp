@@ -14,8 +14,7 @@
     $conexObj = new conex();
 
     $userObj = new user($user, $pass, $email);
-
-
+    
     $conexObj->connect();
 
     switch($control){
